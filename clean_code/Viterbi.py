@@ -122,9 +122,7 @@ class UtilityFunctions():
         :param tag2: tag2
         :return: transition probability
         """
-        # return self.tag_emmission[(tag1, tag2)]/(self.lpos-1)
         val = (self.tag_emmission[(tag1, tag2)] / (self.tag_count[tag1]))
-        print(tag1, tag2, " : ", val)
         return val
 
     def get_bigrams(self):
@@ -204,7 +202,7 @@ class Runner():
             for i in plis:
                 calc = self.make_one_transition(
                     i.get_last_tag(), next_tag, next_word, pval=i.get_c_val())
-                print(calc)
+                # print(calc)
                 if(calc >= mval):
                     mval = calc
                     ref = i
@@ -213,8 +211,8 @@ class Runner():
                     pass
 
             params = ref.get_params(next_tag, mval)
-            print("Choosen Tag: ", params[0][-2],
-                  " ", params[0][-1], " : ", mval)
+            # print("Choosen Tag: ", params[0][-2],
+            #       " ", params[0][-1], " : ", mval)
             next_dict[next_tag] = POS_Holder(params[0], params[1])
 
         # Finally return list of values because while developing
@@ -251,14 +249,8 @@ if __name__ == '__main__':
     # TRAINING PHASE
     u = UtilityFunctions(train_file)
 
-    # Lets see if it works :D
+    # Initalize Runner
     runner = Runner(u)
-
-    # ref = runner.run(
-    #     my_test_str="So I am writing this letter to someone I know and respect very dearly .")
-
-    # print(ref.tags)
-    # print(ref.c_val)
 
     # TESTING PHASE
 
@@ -270,8 +262,6 @@ if __name__ == '__main__':
     z = []
     for i in range(len(test_str)):
         z.append(test_str[i].split(" "))
-        # z[-1].insert(0, "linestartshere/START")
-        # z[-1].append("lineendshere/END")
 
     a = []
     for lis in z:
@@ -280,12 +270,15 @@ if __name__ == '__main__':
             n.append(u.find_tags(rawword))
         unzipped_list = list(zip(*n))
         a.append(unzipped_list)
-        # a.append(u.find_tags(rawword))
 
+    # Just testing...
     # ref = runner.run(
-    #     my_test_str="Hey , I am Sarvesh Bhatnagar . How have you been ?")
+    #     my_test_str="Hey , I am Sarvesh Bhatnagar .")
     # print(ref.tags)
-    ref = runner.run(my_test_str=" ".join(a[0][0]))
-    print(a[1])
-    print(ref.tags)
-    print(accuracy_score(list(a[0][1]), ref.tags[1:]))
+
+    # Calculate accuracy sentence by sentence
+    tot_acc = 0
+    for i in range(len(a)):
+        ref = runner.run(my_test_str=" ".join(a[i][0]))
+        tot_acc += accuracy_score(list(a[i][1]), ref.tags[1:])
+    print(tot_acc/len(a))
