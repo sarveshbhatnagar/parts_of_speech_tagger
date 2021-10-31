@@ -14,7 +14,7 @@ If it is, give tag NP otherwise return NN.
 
 
 If your program is complete what about accuracy?
-with smaller training data, its 93.21% and using larger training data, its 95.93%
+with smaller training data, its 93.21% and using larger training data, its 96.009%
 
 If your program is complete the accuracy of simple baseline program, baseline.py that
 assigns most frequent tags?
@@ -22,13 +22,14 @@ assigns most frequent tags?
 I don't really want to code it again, so I believe I can get through with changing the 
 formula from pval*tag_transition*tag_emmission to tag_emission with some change to formula
 because in emmission we divide by #tags...
-changes in make_one_transition function and get_tag_emission_prob
+check changes in make_one_transition function and get_tag_emission_prob code...
+orignal default policy... i.e NP if letter capital otherwise NN
 small train: 90%
 large train: 93%
 
 AFTER Changing default policy to just give NN
 small train 88%
-large train 92%
+large train 92.4%
 
 Note: Its still not completely baseline but I believe it can be considered as one, its doing
 similar thing, with addition to markov model. I have already given more than 15hrs or so to this

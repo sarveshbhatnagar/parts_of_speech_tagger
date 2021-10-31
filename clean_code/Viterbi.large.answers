@@ -4,9 +4,10 @@ How complete your program is?
 My program is complete
 
 accuracy of system?
-95.93%
+96.009%
 
 baseline? 
-large data with default policy as in Viterbi.answers 93%
+large data with default policy NP if first letter capital else NN as in Viterbi.answers
+93%
 
-large data with default policy to yield NN only : 92%
+large data with default policy to yield NN only : 92.4%
