@@ -1,0 +1,51 @@
+How complete your program is?
+My Program is complete. Although I stumbled across many hurdles, mainly on how should
+I backtrack, or simply have the tags in memory. At first I thought of storing a dictionary
+with list but I also had to send corressponding value alongside. For this purpose, I created
+a different data structure named as POS_Holder. It stores previous history and value
+which will be important when selecting other tags. Next hurdle was how to make code look clean
+for which I made another class called utility function, within which I ended up doing almost 
+all the things. Another data structure that promotes cleaner interface is class Runner.
+I kind of implemented it like we generally implement a neural network, with a step function
+and run function. run calls step function iteratively feeding previous values...
+
+I also applied some default heuristics, one is to simply check if initial letter is capital or not,
+If it is, give tag NP otherwise return NN.
+
+
+If your program is complete what about accuracy?
+with smaller training data, its 93.21% and using larger training data, its 95.93%
+
+If your program is complete the accuracy of simple baseline program, baseline.py that
+assigns most frequent tags?
+
+I don't really want to code it again, so I believe I can get through with changing the 
+formula from pval*tag_transition*tag_emmission to tag_emission with some change to formula
+because in emmission we divide by #tags...
+changes in make_one_transition function and get_tag_emission_prob
+small train: 90%
+large train: 93%
+
+AFTER Changing default policy to just give NN
+small train 88%
+large train 92%
+
+Note: Its still not completely baseline but I believe it can be considered as one, its doing
+similar thing, with addition to markov model. I have already given more than 15hrs or so to this
+assignment and I did make a baseline initially but while creating the program it got changed and I
+saw the complete Assignment.pdf when creating this report...
+
+
+If your program is complete Identify three errors in automatically tagged data and how it can be fixed?
+
+One was simple, the probability of word being NN is pretty high, but if a word contains initial letter as a capital letter
+then it is likely a NP.
+
+Another was diminishing probability when using very long sentences... It can be solved by either doing tagging sentence by sentence
+or by doing adjustment after certain number of tags are seen.
+
+Finally, suppose we dont find a word in data, so word emmission probability will be 0 and it will return 0 for that. I did stumble across that 
+and we can just do smoothing to solve that.
+
+
+

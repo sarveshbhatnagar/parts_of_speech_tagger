@@ -1,0 +1,12 @@
+Sorry I added answers for both in Viterbi.answers too...
+
+How complete your program is?
+My program is complete
+
+accuracy of system?
+95.93%
+
+baseline? 
+large data with default policy as in Viterbi.answers 93%
+
+large data with default policy to yield NN only : 92%

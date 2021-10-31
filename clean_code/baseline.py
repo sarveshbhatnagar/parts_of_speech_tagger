@@ -71,7 +71,7 @@ class UtilityFunctions():
         it would be fine.
         """
         if(word[0].isupper()):
-            default = "NP"
+            default = "NN"
         else:
             default = "NN"
 
@@ -99,8 +99,9 @@ class UtilityFunctions():
         :param tag: tag
         :return: tag emmission probability
         """
-        return (self.tag_emmission_counts[(word, tag)]+1)/(self.tag_count[tag]+len(self.existing_tag_set))
-        # return (self.tag_emmission_counts[(word, tag)] + 1)/(self.word_count[word]+len(self.existing_tag_set))
+        # NOTE made changes here.
+        # return (self.tag_emmission_counts[(word, tag)]+1)/(self.tag_count[tag]+len(self.existing_tag_set))
+        return (self.tag_emmission_counts[(word, tag)] + 1)/(self.word_count[word]+len(self.existing_tag_set))
 
     def get_existing_tag_set(self):
         """
@@ -179,8 +180,10 @@ class Runner():
         :params tag1,tag2,word,pval:
         :returns value:
         """
-        return pval * self.utility_functions.get_tag_emmission_prob(word, tag2) * self.utility_functions.get_tag_transition_prob(tag1, tag2)
-        # return pval * self.utility_functions.get_tag_emmission_prob(word, tag2)
+
+        # NOTE Made changes here
+        # return pval * self.utility_functions.get_tag_emmission_prob(word, tag2) * self.utility_functions.get_tag_transition_prob(tag1, tag2)
+        return pval * self.utility_functions.get_tag_emmission_prob(word, tag2)
 
     def step(self, next_word, plis=[POS_Holder(["START"], 1)]):
         """
